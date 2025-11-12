@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Website - Login & Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🛍️ Shopping Website</h1>
+     <div class="center-container">
+    <div class="auth-box">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Enter email" required>
+        <input type="password" id="loginPassword" placeholder="Enter password" required>
+        <button type="submit">Login</button>
+      </form>
+
+      <h3>New user?</h3>
+      <a href="#" id="showSignup">Create an Account</a>
+
+      <div id="signupBox" style="display:none;">
+        <h2>Signup</h2>
+        <form id="signupForm">
+          <input type="text" id="username" placeholder="Enter username" required>
+          <input type="email" id="email" placeholder="Enter email" required>
+          <input type="password" id="password" placeholder="Enter password" required>
+          <button type="submit">Signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const showSignup = document.getElementById('showSignup');
+    const signupBox = document.getElementById('signupBox');
+
+    showSignup.addEventListener('click', () => {
+      signupBox.style.display = signupBox.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Signup logic
+    document.getElementById("signupForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let user = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+      alert("Signup successful! Please login now.");
+      signupBox.style.display = "none";
+    });
+
+    // Login logic
+    document.getElementById("loginForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      let storedUser = JSON.parse(localStorage.getItem("user"));
+      let email = document.getElementById("loginEmail").value;
+      let password = document.getElementById("loginPassword").value;
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        alert("Login successful!");
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "shop.html";
+      } else {
+        alert("Invalid email or password!");
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🛍️ Shopping Website</h1>
+    <div class="user-info">
+      <span id="userName"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+    <div class="cart">
+      <a href="#" id="cartBtn">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </div>
+  </header>
+
+  <main id="product-list" class="products"></main>
+
+  <div class="cart-popup" id="cartPopup">
+    <h2>Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <p>Total: ₹<span id="totalPrice">0</span></p>
+    <button id="closeCart">Close</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
